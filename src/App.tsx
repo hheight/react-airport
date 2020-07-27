@@ -1,18 +1,23 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import './App.css';
-import { loadFlights } from './store';
-import { useDispatch, useSelector } from 'react-redux';
+import { Switch, Route } from 'react-router-dom';
+import Flights from './components/Flights';
+import Home from './components/Home';
+import Header from './components/Header';
+import { Container } from '@material-ui/core';
 
 function App() {
-  const dispatch = useDispatch();
-  const showFlights = useSelector(loadFlights);
-
-  useEffect(() => {
-    showFlights(dispatch)
-  }, []);
-  
   return (
     <>
+      <Header />
+      <main>
+        <Container maxWidth="md" style={{ marginTop: "var(--header-height)" }}>
+          <Switch>
+            <Route path="/departures" component={Flights} />
+            <Route path="/" component={Home} />
+          </Switch>
+        </Container>
+      </main>
     </>
   );
 }
