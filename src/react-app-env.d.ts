@@ -8,11 +8,11 @@ interface IFlightsFromServer {
 }
 
 interface IFlights {
-  departure: Departure[]
-  arrival: Arrival[]
+  departure: IDeparture[]
+  arrival: IArrival[]
 }
 
-interface Departure {
+interface IDeparture {
   "ID": number
   "fltNo": string
   "fltTypeID.code": string
@@ -57,13 +57,13 @@ interface Departure {
   "showOnSite": number
   "logo": string
   "airline": {
-    [key: string]: Airline
+    [key: string]: IAirline
   }
-  "codeShareData": CodeShareData
+  "codeShareData": ICodeShareData[]
   "delay": boolean
 }
 
-interface Arrival {
+interface IArrival {
   "fltNo": string
   "fltTypeID.code": string
   "fltTypeID.name": string
@@ -96,14 +96,12 @@ interface Arrival {
   "belt": string
   "logo": string
   "airline": {
-    "en": Airline
-    "ru": Airline
-    "ua": Airline
+    [key: string]: IAirline
   }
-  "codeShareData": CodeShareData
+  "codeShareData": ICodeShareData[]
 }
 
-interface Airline {
+interface IAirline {
   "id": number
   "name": string
   "icao": string
@@ -116,13 +114,11 @@ interface Airline {
   "updatedAt": number
 }
 
-interface CodeShareData {
-  "codeShareData": [{
-    "icao": string
-    "codeShare": string
-    "logo": string
-    "airline": {
-      [key: string]: Airline
-    }
-  }]
+interface ICodeShareData {
+  "icao": string
+  "codeShare": string
+  "logo": string
+  "airline": {
+    [key: string]: Airline
+  }
 }

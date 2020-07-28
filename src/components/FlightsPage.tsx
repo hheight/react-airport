@@ -3,12 +3,12 @@ import { useDispatch, useSelector } from 'react-redux';
 import { loadFlights } from '../store';
 import FlightsTable from './FlightsTable';
 
-export default function Flights() {
+export default function FlightsPage() {
   const dispatch = useDispatch();
-  const showFlights = useSelector(loadFlights);
+  const fetchFlights = useSelector(loadFlights);
 
   useEffect(() => {
-    showFlights(dispatch)
+    fetchFlights(dispatch)
   }, []);
   
   return (

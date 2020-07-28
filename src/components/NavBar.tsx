@@ -8,6 +8,7 @@ const NavList = styled.ul`
 `;
 
 const NavItem = styled.li`
+  list-style: none;
 `;
 
 const StyledNavLink = styled(NavLink)`
@@ -34,7 +35,16 @@ export default function NavBar() {
         </StyledNavLink>
       </NavItem>
       <NavItem>
-        <StyledNavLink to="/departures">
+        <StyledNavLink
+          to="/departures"
+          isActive={(match, location) => {
+            if (location.pathname.match(/(\/departures\b)|(\/arrivals\b)/g)) {
+              return true;
+            } else {
+              return false;
+            }
+          }}
+        >
           Flights
         </StyledNavLink>
       </NavItem>
